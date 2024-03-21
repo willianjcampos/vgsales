@@ -1,4 +1,14 @@
 # Bibliotecas Padrão
+import pg.home as home
+import pg.operacional as operacional
+import pg.analitico as analitico
+import pg.estrategico as estrategico
+import pg.tatico as tatico
+import pg.outros as outros
+import pg.sobre as sobre
+from utils.dataset import df
+import utils.style as utSt
+import utils.sidebar as utSidebar
 import streamlit as st
 import pandas as pd
 
@@ -12,19 +22,7 @@ st.set_page_config(
 )
 
 
-
 # Bibliotecas Local
-import utils.sidebar as utSidebar
-import utils.style as utSt
-from utils.dataset import df
-import pg.informacoes as informacoes
-import pg.outros as outros
-import pg.tatico as tatico
-import pg.estrategico as estrategico
-import pg.analitico as analitico
-import pg.operacional as operacional
-import pg.home as home
-
 
 
 # -------------Para usar estilo CSS-------------#
@@ -50,7 +48,7 @@ class MainApplication:
         # -------------Pg Operacional-------------#
         if app == 'Operacional':
             operacional.app(anos_selecionados, genero_selecionados,
-                     desenvolvedora_selecionados)
+                            desenvolvedora_selecionados)
 
         # -------------Pg Analítico-------------#
         if app == 'Analítico':
@@ -69,8 +67,8 @@ class MainApplication:
             outros.app(df)
 
         # -------------Pg Informações-------------#
-        if app == 'Informações':
-            informacoes.app()
+        if app == 'Sobre':
+            sobre.app()
     run()
 
 

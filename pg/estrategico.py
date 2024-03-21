@@ -2,4 +2,5 @@ import streamlit as st
 
 
 def app():
-    st.write('Estratégico')
+    st.title('Estratégico')
+    st.image(r'arquivos\404.jpg', width=600)

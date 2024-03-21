@@ -13,14 +13,14 @@ def menu_sidebar():
     app = option_menu(
         menu_title="Jogos Eletrônicos",
         options=['Home', 'Operacional', 'Tático', 'Estratégico',
-                 'Analítico', 'Outros', 'Informações'],
+                 'Analítico', 'Outros', 'Sobre'],
         icons=[],
-        menu_icon='chat-text-fill',
-        default_index=1,
+        menu_icon='controller',
+        default_index=0,
         styles=utSt.estilo_menu
     )
 
-    if app == 'Home' or app == 'Informações':
+    if app == 'Home' or app == 'Sobre':
         anos_selecionados = df
         genero_selecionados = df
         desenvolvedora_selecionados = df
