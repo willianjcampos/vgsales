@@ -1,82 +1,82 @@
+# Bibliotecas Padrão
 import streamlit as st
-from streamlit_option_menu import option_menu
-import pg.home as home, pg.analitico as analitico, pg.estrategico as estrategico, pg.tatico as tatico, pg.outros as outros, pg.informacoes as informacoes
 import pandas as pd
 
+from streamlit_option_menu import option_menu
 
-
-## Configuração da Página
+# -------------Configuração da Página-------------#
 st.set_page_config(
-    page_title="Venda de Jogos",
-    page_icon="⚖️",
+    page_title="Jogos Eletrônicos",
+    page_icon=":video_game:",
     layout='wide'
 )
 
 
-## Para usar estilo CSS
-with open(r'VendaJogos/vgsales-style.css', encoding='utf8') as f:
+
+# Bibliotecas Local
+import utils.sidebar as utSidebar
+import utils.style as utSt
+from utils.dataset import df
+import pg.informacoes as informacoes
+import pg.outros as outros
+import pg.tatico as tatico
+import pg.estrategico as estrategico
+import pg.analitico as analitico
+import pg.operacional as operacional
+import pg.home as home
+
+
+
+# -------------Para usar estilo CSS-------------#
+with open(utSt.estilo_css, encoding='utf8') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 
-## Classe Principal
+# -------------Classe Principal-------------#
 @st.cache_data
-class MultiApp:
+class MainApplication:
     def __init__(self) -> None:
         self.app = []
 
-
-    def run():
-        # Carrega a base de dados
-        df = pd.read_csv(r'VendaJogos/vgsales-bd-tratado.csv', encoding='utf-8')
-
-
-        # Configura Sidebar
+    def run() -> None:
+        # -------------Sidebar-------------#
         with st.sidebar:
-            # Configuração do Menu
-            app = option_menu(
-                menu_title="Venda de Jogos",
-                options=['Home', 'Tático', 'Estratégico', 'Analítico', 'Outros', 'Informações'],
-                icons=[],
-                menu_icon='chat-text-fill',
-                default_index=0,
-                styles={
-                    'container': {'padding': '5px !important'},
-                    'icon': {'font-size': '14px'},
-                    'nav-link': {'font-size': '14px',
-                                 'text-align': 'left',
-                                 'margin': '2px 0px',
-                                 '--bs-nav-link-padding-x': '0.5rem',
-                                 '--bs-nav-link-padding-y': '0.5rem'},
-                    'nav-link-selected': {'font-size': '14px',
-                                          'font-weight': 'normal'}
-                }
-            )
-            anos = sorted(df['Year'].unique())
-            anos_selecionados = st.multiselect('Anos:', anos, placeholder='Selecione...')
+            app, anos_selecionados, genero_selecionados, desenvolvedora_selecionados = utSidebar.menu_sidebar()
 
-            genero = sorted(df['Genre'].unique())
-            genero_selecionados = st.multiselect('Gênero:', genero, placeholder='Selecione...')
-
-            desenvolvedora = sorted(df['Publisher'].unique())
-            desenvolvedora_selecionados = st.multiselect('Desenvolvedora:', desenvolvedora, placeholder='Selecione...')
-
+        # -------------Pg Home-------------#
         if app == 'Home':
-            home.app(df, anos_selecionados, genero_selecionados, desenvolvedora_selecionados)
-        
+            home.app()
+
+        # -------------Pg Operacional-------------#
+        if app == 'Operacional':
+            operacional.app(anos_selecionados, genero_selecionados,
+                     desenvolvedora_selecionados)
+
+        # -------------Pg Analítico-------------#
         if app == 'Analítico':
             analitico.app()
 
+        # -------------Pg Estratégico-------------#
         if app == 'Estratégico':
             estrategico.app()
 
+        # -------------Pg Tático-------------#
         if app == 'Tático':
             tatico.app()
-        
+
+        # -------------Pg Outros-------------#
         if app == 'Outros':
             outros.app(df)
-            
+
+        # -------------Pg Informações-------------#
         if app == 'Informações':
             informacoes.app()
-    
-
     run()
+
+
+# def main():
+#     app = MainApplication()
+
+
+# if __name__ == "__main__":
+#     main()

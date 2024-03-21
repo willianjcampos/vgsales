@@ -1,243 +1,30 @@
 import streamlit as st
-import pandas as pd
-import locale
-import altair as alt
-import streamlit.components.v1 as components
-
-bloco_estilo = '''
-                        <style>
-                            *{
-                                margin: 0px;
-                                padding: 0px;
-                            }
-                            body{
-                                background-color: #FF4B4B;
-                                padding: .5rem;
-                                color: #FFFFFF;
-                                font-family: sans-serif;
-                            }
-                            body:hover{
-                                cursor: pointer;
-                            }
-                            h1, p{
-                                text-align: center;
-                                font-size: 18px;
-                                padding: .3rem 0rem;
-                            }
-                        </style>
-                    '''
 
 
-def cols_primeira_linha(df):
-    locale.setlocale(locale.LC_ALL, 'de_DE.utf-8')
-
-    col1, col2, col3, col4, col5 = st.columns(5)
-
-    
-
-    with col1:
-        ns_sales_total = locale.format('%.2f', df['NA_Sales'].sum(), True)
-
-        components.html(
-            f"""
-                {bloco_estilo}
-                <h1>NA</h1>
-                <p>{ns_sales_total}</p>
-            """
-        )
-        
-
-    with col2:
-       eu_sales_total = locale.format('%.2f', df['EU_Sales'].sum(), True)
-
-       components.html(
-            f"""
-                {bloco_estilo}
-                <h1>EU</h1>
-                <p>{eu_sales_total}</p>
-            """
-        )
-       
-    with col3:
-        jp_sales_total = locale.format('%.2f', df['JP_Sales'].sum(), True)
-
-        components.html(
-            f"""
-                {bloco_estilo}
-                <h1>JP</h1>
-                <p>{jp_sales_total}</p>
-            """
-        )
-
-    with col4:
-        other_sales_total = locale.format('%.2f', df['Other_Sales'].sum(), True)
-
-        components.html(
-            f"""
-                {bloco_estilo}
-                <h1>OUTROS</h1>
-                <p>{other_sales_total}</p>
-            """
-        )
-
-    with col5:
-        global_sales_total = locale.format('%.2f', df['Global_Sales'].sum(), True)
-
-        components.html(
-            f"""
-                <body style='background-color: blue;'>
-                {bloco_estilo}
-                <h1>TOTAL</h1>
-                <p>{global_sales_total}</p>
-                </body>
-            """
-        )
+def app():
+    st.title('Projeto de Análise de DataFrame')
+    st.write('Este projeto foi criado para efetuar a avaliação relacionada ao desenvolvimento de Dashboards através de ferramentas de exibição gráfica em conjunto com o Streamlit para gerar relatórios em formato Web dinâmicos.')
+    st.header('Sobre o Projeto')
+    st.write('')
 
 
 
-def cols_segunda_linha(eixo_x, eixo_y, df_genero):
-    col1, col2 = st.columns([3, 2])
-
-    # Gráfico de Linhas
-    with col1:
-        grafico3 = pd.DataFrame({'Volume de Vendas de Jogos': eixo_y,
-                        'Anos': eixo_x})
-
-        st.write(alt.Chart(grafico3,
-                        title=alt.Title(
-                            "Venda de Jogos",
-                            subtitle="Volume de vendas de Jogos ao longo dos anos"
-                            ),
-                            width="container"
-                            ).mark_line(point=True,
-                                        color='#FF4B4B',
-                                        interpolate='cardinal'
-                                        ).encode(x=alt.X('Anos', sort=None),
-                                                y='Volume de Vendas de Jogos',
-                                                ).interactive())
-
-    # Gráfico de Pizza
-    with col2:
-        x4 = df_genero.groupby(['Genre'])['Genre'].count().sort_values(ascending=False).index # Nomes (names)
-        y4 = df_genero.groupby(['Genre'])['Genre'].count().sort_values(ascending=False) # Quantidade (values)
-
-        grafico4 = pd.DataFrame({'Setores': x4,
-                    'Valores': y4})
 
 
-        st.write(alt.Chart(grafico4,
-                        title=alt.Title(
-                            "Venda de Jogos por Gênero",
-                            subtitle="Volume de vendas por Gênero"
-                            ),
-                            width='container'
-                        ).mark_arc(innerRadius=70).encode(
-            theta='Valores',
-            color='Setores',
-        ).interactive())
+    st.markdown('''
+                1. No diretório arquivos encontram-se alguns arquivos utilizando durante a execução deste projeto:
 
-
-
-def cols_terceira_linha(eixo_x, eixo_y):
-    col1, col2 = st.columns([1, 5])
-    
-    # Rank
-    with col1:
-        contagem = 3
-        if len(eixo_x) >= contagem:
-            for i in range(contagem):
-                p = i + 1
-                titulo = str('%iº' %p)
-                valor = str(eixo_x[i] + " - " + locale.format('%d', eixo_y[i], True))
-                components.html(f"""
-                                {bloco_estilo}
-                                <h1>{titulo}</h1>
-                                <p>{valor}</p>
-                                """)
+                    `vgsales-analise.ipynb`: Arquivo criado com o intuito de analisar as informações da base de dados vgsales.csv e, posteriormente, o arquivo vgsales-scrape.csv oriundo do processo de scraping.
+                    
+                    `vgsales-bd-tratado.csv`: Arquivo gerado através da execução do arquivo vgsales-analise.ipynb, sendo o resultado do processo de limpeza e adequação da base de dados.
+                    
+                    `vgsales-scrape.py`: Arquivo python com o processo de scraping adaptado da fonte que gerou o banco de dados. Foi utilizado para realizar o processo de coleta das informações de forma atualizada.
+                    
+                    `vgsales.csv`: Arquivo baixado do Kaggle utilizado para análise preliminar das informações. Depois deste processo, foi realizado o processo de scraping na fonte da base de dados para atualizar as informações.
+                    
+                    `vgsales-scrape.csv`: Arquivo resultante do processo de scraping realizado através da execução do arquivo vgsales-scrape.py, originalmente desenvolvido pelo usuário GregorUT, adaptado e atualizado para obter as informações recentes da página VGChartz.
                 
-                
-
-        elif len(eixo_x) >= 1:
-            #st.header('1º')
-            #st.write(eixo_x[0] + " - " + locale.format('%d', eixo_y[0], True))
-            titulo = "1º"
-            valor = str(eixo_x[0] + " - " + locale.format('%d', eixo_y[0], True))
-            components.html(f"""
-                                {bloco_estilo}
-                                <h1>{titulo}</h1>
-                                <p>{valor}</p>
-                                """)
-
-        else:
-            st.write('Dados indisponíveis')
-
-        
-
-    # Gráfico de Barras
-    with col2:
-        grafico = pd.DataFrame({'Plataformas': eixo_x[0:10],
-                    'Quantidade': eixo_y[0:10]})
-
-        st.write(alt.Chart(grafico,
-                        title=alt.Title(
-                            "Plataformas",
-                            subtitle="As 10 Plataformas que mais reuniram recursos"
-                            ),
-                            width="container"
-                        ).mark_bar(color='#FF4B4B').encode(
-            x=alt.X('Plataformas', sort=None),
-            y='Quantidade'
-        ).interactive())
-
-
-
+                0. O projeto do Streamlit é executado através do arquivo app.py, encontrado no diretório raiz do projeto.
+                0. No diretório pg encontram-se as páginas utilizada para a paginação e organização do projeto do Streamlit.''')
     
-
-
-def app(df, anos_selecionados, genero_selecionados, desenvolvedora_selecionados):
-    # Cria as variáveis de filtros
-    df_ano = df[df['Year'].isin(anos_selecionados)]
-    df_genero = df[df['Genre'].isin(genero_selecionados)]
-    df_desenvolvedora = df[df['Genre'].isin(desenvolvedora_selecionados)]
-
-    if df_ano.shape[0] > 0:
-        if df_genero.shape[0] > 0:
-            if df_desenvolvedora.shape[0] > 0:
-                df_analise = df[(df_ano & df_genero & df_desenvolvedora)]
-
-    ## PRIMEIRA LINHA
-    # Verifica Filtro de Período (Anos) de Venda
-    if df_ano.shape[0] > 0:
-        cols_primeira_linha(df_ano)
-        
-    else:
-        cols_primeira_linha(df)
-    
-    
-    # SEGUNDA LINHA
-    # Verifica Filtro de Gênero de Jogos
-    if df_genero.shape[0] > 0:
-        eixo_x = df_genero.groupby(['Year'])['Year'].count().index
-        eixo_y = df_genero.groupby(['Year'])['Year'].count()
-        cols_segunda_linha(eixo_x, eixo_y, df_genero)
-
-    else:
-        eixo_x = df.groupby(['Year'])['Year'].count().index
-        eixo_y = df.groupby(['Year'])['Year'].count()
-        cols_segunda_linha(eixo_x, eixo_y, df)
-    
-    
-    
-    
-    ## TERCEIRA LINHA
-    if df_genero.shape[0] > 0:
-        eixo_x = df_genero.groupby(['Platform'])['Platform'].count().sort_values(ascending=False).index
-        eixo_y = df_genero.groupby(['Platform'])['Platform'].count().sort_values(ascending=False)
-
-    else:
-        eixo_x = df.groupby(['Platform'])['Platform'].count().sort_values(ascending=False).index
-        eixo_y = df.groupby(['Platform'])['Platform'].count().sort_values(ascending=False)
-
-    cols_terceira_linha(eixo_x, eixo_y)
-    
-    
+    st.write('Com o intuito de separar algumas configurações, parte dos estilos encontram-se no arquivo vgsales-syle.css, importado no arquivo app.py. Existem algumas configurações de estilo que só foram possíveis de serem executadas dentro do próprio arquivo (ainda não encontrei um meio de separar todos os estilos e centrar em um único arquivo).')

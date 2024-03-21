@@ -1,0 +1,19 @@
+
+                    *{
+                        margin: 0px;
+                        padding: 0px;
+                    }
+                    body{
+                        background-color: #FF4B4B;
+                        padding: .5rem;
+                        color: #FFFFFF;
+                        font-family: sans-serif;
+                    }
+                    body:hover{
+                        cursor: pointer;
+                    }
+                    h1, p{
+                        text-align: center;
+                        font-size: 18px;
+                        padding: .3rem 0rem;
+}

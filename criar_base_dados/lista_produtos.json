@@ -1,0 +1,180 @@
+[
+    {
+        "Produto": "Notebook Dell",
+        "Categoria": "Notebook",
+        "Valor": 2033.10
+    },
+    {
+        "Produto": "Notebook Acer",
+        "Categoria": "Notebook",
+        "Valor": 2033.10
+    },
+    {
+        "Produto": "Notebook Lenovo",
+        "Categoria": "Notebook",
+        "Valor": 2033.10
+    },
+    {
+        "Produto": "Notebook Samsung",
+        "Categoria": "Notebook",
+        "Valor": 2033.10
+    },
+    {
+        "Produto": "Notebook Asus",
+        "Categoria": "Notebook",
+        "Valor": 2033.10
+    },
+    {
+        "Produto": "Computador Dell",
+        "Categoria": "Computador",
+        "Valor": 7650.32
+
+    },
+    {
+        "Produto": "Computador Lenovo",
+        "Categoria": "Computador",
+        "Valor": 7650.32
+
+    },
+    {
+        "Produto": "Computador HP",
+        "Categoria": "Computador",
+        "Valor": 7650.32
+
+    },
+    {
+        "Produto": "Computador Apple",
+        "Categoria": "Computador",
+        "Valor": 7650.32
+
+    },
+    {
+        "Produto": "Mouse Logitech",
+        "Categoria": "Mouse",
+        "Valor": 687.32
+
+    },
+    {
+        "Produto": "Mouse C3Teck",
+        "Categoria": "Mouse",
+        "Valor": 687.32
+
+    },
+    {
+        "Produto": "Mouse Multilaser",
+        "Categoria": "Mouse",
+        "Valor": 687.32
+
+    },
+    {
+        "Produto": "Mouse Razer",
+        "Categoria": "Mouse",
+        "Valor": 687.32
+
+    },
+    {
+        "Produto": "Mouse Redragon",
+        "Categoria": "Mouse",
+        "Valor": 687.32
+
+    },
+    {
+        "Produto": "Teclado Microsoft",
+        "Categoria": "Teclado",
+        "Valor": 783.72
+
+    },
+    {
+        "Produto": "Teclado Radragon",
+        "Categoria": "Teclado",
+        "Valor": 783.72
+    },
+    {
+        "Produto": "Teclado Logitech",
+        "Categoria": "Teclado",
+        "Valor": 783.72
+    },
+    {
+        "Produto": "Teclado Corsair",
+        "Categoria": "Teclado",
+        "Valor": 783.72
+    },
+    {
+        "Produto": "Monitor LG",
+        "Categoria": "Monitor",
+        "Valor": 1439
+    },
+    {
+        "Produto": "Monitor Samsung",
+        "Categoria": "Monitor",
+        "Valor": 1439
+    },
+    {
+        "Produto": "Monitor AOC",
+        "Categoria": "Monitor",
+        "Valor": 1439
+    },
+    {
+        "Produto": "Monitor Dell",
+        "Categoria": "Monitor",
+        "Valor": 1439
+    },
+    {
+        "Produto": "Monitor BenQ",
+        "Categoria": "Monitor",
+        "Valor": 1439
+    },
+    {
+        "Produto": "Monitor Asus ROG",
+        "Categoria": "Monitor",
+        "Valor": 1439
+    },
+    {
+        "Produto": "HD Externo Seagate",
+        "Categoria": "Armazenamento",
+        "Valor": 360
+
+    },
+    {
+        "Produto": "HD Externo Adata",
+        "Categoria": "Armazenamento",
+        "Valor": 360
+
+    },
+    {
+        "Produto": "HD Externo SanDisk",
+        "Categoria": "Armazenamento",
+        "Valor": 360
+
+    },
+    {
+        "Produto": "HD Externo Western Digital",
+        "Categoria": "Armazenamento",
+        "Valor": 360
+
+    },
+    {
+        "Produto": "Impressora Samsung",
+        "Categoria": "Impressora",
+        "Valor": 1029
+
+    },
+    {
+        "Produto": "Impressora HP",
+        "Categoria": "Impressora",
+        "Valor": 1029
+
+    },
+    {
+        "Produto": "Impressora Epson",
+        "Categoria": "Impressora",
+        "Valor": 1029
+
+    },
+    {
+        "Produto": "Impressora Brother",
+        "Categoria": "Impressora",
+        "Valor": 1029
+
+    }
+]
