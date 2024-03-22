@@ -6,14 +6,14 @@ from datetime import datetime, timedelta
 
 
 # Abre o arquivo 'lista_produtos.json' na pasta do projeto
-with open(r'criar_base_dados/lista_produtos.json', 'r', encoding='utf-8') as f:
+with open(r'sempre_bem_ti/criar_base_dados/lista_produtos.json', 'r', encoding='utf-8') as f:
     data = json.load(f)
 
 # Converte o arquivo json em um pandas.DataFrame
 lista_produtos = pd.DataFrame(data)
 
 # Abre o arquivo 'municipios_uf_brasil.csv' na pasta do projeto
-df = pd.read_csv(r'criar_base_dados/municipios_uf_brasil.csv', encoding='utf-8', delimiter=';')
+df = pd.read_csv(r'sempre_bem_ti/criar_base_dados/municipios_uf_brasil.csv', encoding='utf-8', delimiter=';')
 
 # Converte o pandas.DataFrame em um dicionário
 lista_regioes = df.set_index('UF')['MUNICÍPIO'].to_dict()
@@ -30,7 +30,7 @@ hora_final = 17
 nome_database = "base_dados"
 
 # Local onde o arquivo será salvo
-caminho_base_dados = "criar_base_dados/" + nome_database + ".csv"
+caminho_base_dados = "sempre_bem_ti/criar_base_dados/" + nome_database + ".csv"
 
 # Quantidade de Registros que serão criados
 total_registros = int(input("Quantidade de Registros: "))
